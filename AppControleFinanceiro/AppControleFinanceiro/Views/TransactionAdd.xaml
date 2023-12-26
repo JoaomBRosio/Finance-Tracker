@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppControleFinanceiro.Views.TransactionAdd"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="TransactionAdd"
+    BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.3" Color="#3b74bf" />
+            <GradientStop Offset="0.9" Color="White" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+
+    <VerticalStackLayout Spacing="10">
+        <Border
+            Margin="15"
+            Padding="15"
+            BackgroundColor="Transparent"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 30">
+            <Grid ColumnDefinitions="*, 30" RowDefinitions="Auto">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Text="Nova Transação"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center" 
+                    FontSize="Subtitle"/>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Source="close.png"
+                    WidthRequest="17">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizerTapped_ToClose" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Border>
+
+        <Label
+            x:Name="LabelError"
+            Margin="30,0"
+            IsVisible="False"
+            TextColor="{AppThemeBinding Light=Red,
+                                        Dark='#F37474'}" />
+
+
+        <Entry
+            x:Name="EntryName"
+            Margin="15,20"
+            Placeholder="Nome" 
+            PlaceholderColor="WhiteSmoke"/>
+
+        <DatePicker TextColor="White" x:Name="DatePickerDate" Margin="{OnPlatform Default='15,0', MacCatalyst='15, 15, 15, 0'}" />
+
+        <Entry
+            x:Name="EntryValue"
+            Margin="15,20"
+            Placeholder="Valor"
+            PlaceholderColor="WhiteSmoke"/>
+
+        <Grid Margin="30,20" ColumnDefinitions="*,*">
+            <RadioButton
+        x:Name="RadioIncome"
+        Content=" Receita"
+        IsChecked="True" />
+            <RadioButton
+        x:Name="RadioExpense"
+        Grid.Column="1"
+        Content=" Despesa"
+        HorizontalOptions="End"/>
+        </Grid>
+
+        <Button
+            Margin="15,0"
+            Clicked="OnButtonClicked_Save"
+            HorizontalOptions="End"
+            Text="Salvar"
+            TextColor="White"
+            BackgroundColor="#3b74bf"/>
+
+    </VerticalStackLayout>
+</ContentPage>
